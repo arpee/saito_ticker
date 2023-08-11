@@ -1,29 +1,30 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { AdvancedChart } from "react-tradingview-embed";
-import Iframe from 'react-iframe';
+//import Iframe from 'react-iframe';
 
 import SaitoPrice from './components/SaitoPrice';
+/*
 import Footer from './components/Footer';
 import MarketCapOf from './components/MarketCapOf';
 import LargeBuy from './components/LargeBuy';
 import SaitoDescription from './components/SaitoDescription';
 import Github from './components/Github';
 import Converter from './components/Converter';
-
+*/
 import burger_icon from './assets/001-menu.png';
 
 function App() {
 
   const [saito, set_saito] = useState(undefined);
   const [average_price, set_average_price] = useState(undefined);
-  const [date, set_new_date] = useState(undefined);
+//  const [date, set_new_date] = useState(undefined);
   const [burger, set_burger] = useState(false);
  
-  useEffect(() => {
+/*  useEffect(() => {
     document.title = 'Saito Ticker - We love Saito';
   }, []);
-
+*/
   useEffect(() => {
     get_saito();
   }, [set_saito]);
@@ -41,13 +42,20 @@ function App() {
   const get_average = (tickers) => {
     var total_volume = 0;
     var avg_price = 0;
-    var temp = [];
-    tickers && tickers.map(item => {
-      console.log(item);
-      if(item.volume > 500) {
-      total_volume = total_volume + item.volume;
-      avg_price = (item.converted_last.usd * item.volume) + avg_price;
-     }
+    tickers.forEach(item => {
+      //console.log(item);
+      if(item.volume) {
+        var vol = 0;
+        if (item.volume.h24) {
+            vol = item.volume.h24;
+        } else {
+            vol = item.volume;
+        }
+        if (vol > 500) {
+          total_volume = total_volume + vol;
+          avg_price = (item.converted_last.usd * vol) + avg_price;
+         }
+      } 
     });
 
     const average_result = avg_price / total_volume;
@@ -92,18 +100,6 @@ function App() {
               <li onClick={() => close_nav()}>
                 <a href="#graphique">Graphique</a>
               </li>
-              <li onClick={() => close_nav()}>
-                <a href="#marketcapof">Market Cap Of</a>
-              </li>
-              <li onClick={() => close_nav()}>
-                <a href="#github">Github</a>
-              </li>
-              <li onClick={() => close_nav()}>
-                <a href="https://saito.tech/" target="_blank">Saito Website</a>
-              </li>
-              <li onClick={() => close_nav()}>
-                <a href="#mint" style={{cursor: 'pointer'}}>Supporter 🟥</a>
-              </li>
             </ul>
           </nav>
 
@@ -121,33 +117,7 @@ function App() {
         </div>
       </div>
 
-      { saito && <MarketCapOf saito={saito}/> }
-
-      { saito && <Converter saito={saito}/> }
-
-      <LargeBuy />
-
-      <Github/>
-
-      <div id="mint">
-        <div className="container_mint">
-            <Iframe
-            src="https://gateway.ipfscdn.io/ipfs/Qmcine1gpZUbQ73nk7ZGCcjKBVFYXrEtqrhujXk3HDQ6Nn/erc721.html?contract=0xf00Af4977B964E3F29C72d952f2F7a4E7D05D0ae&chainId=137&theme=dark"
-            width="600px"
-            height="600px"
-            style="max-width:100%"
-            frameborder="0"
-            ></Iframe>
-        </div>
-      </div>
-  
-      <div className="container_sub_info">
-          <h2 className="medium_title">Say hello to the community on <a href="https://saito.io/redsquare/#home" target="_blank" style={{color: 'white'}}>RedSquare</a> or come to <a href="https://saito.io/arcade/" target="_blank" style={{color: 'white'}}>battle</a> me on blackjack 😇</h2>
-      </div>
-
-      { saito && <SaitoDescription saito={saito} /> }    
-      
-      <Footer />    
+ 
         
     </div>
   );
