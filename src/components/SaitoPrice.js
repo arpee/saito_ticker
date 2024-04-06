@@ -30,6 +30,7 @@ function SaitoPrice() {
   }, []);
 
   //Get ETH & BSC pairs
+  console.log("here we go");
   const get_tokens = async () => {
     var tokensResponseBsc = await getPairsMatchingBaseTokenAddress(
       "0x3c6DAd0475d3a1696B359dc04C99FD401BE134dA"
@@ -37,11 +38,12 @@ function SaitoPrice() {
     var tokensResponseEth = await getPairsMatchingBaseTokenAddress(
       "0xFa14Fa6958401314851A17d6C5360cA29f74B57B"
     );
-    var tokens_bsc = tokensResponseBsc.pairs;
-    var tokens_eth = tokensResponseEth.pairs;
-    var temp = tokens_bsc;
-    tokens_eth &&
-      tokens_eth.map((item) => {
+    //var tokens_bsc = tokensResponseBsc.pairs;
+    //var tokens_eth = tokensResponseEth.pairs;
+    var tokens_all = tokensResponseEth.pairs.concat(tokensResponseBsc.pairs);
+    var temp = [];
+    tokens_all &&
+      tokens_all.map((item) => {
         var vol = 0;
         if (item.volume.h24) {
           vol = item.volume.h24;
