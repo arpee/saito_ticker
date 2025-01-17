@@ -18,54 +18,54 @@ function App() {
 
   const [saito, set_saito] = useState(undefined);
   const [average_price, set_average_price] = useState(undefined);
-//  const [date, set_new_date] = useState(undefined);
+  //  const [date, set_new_date] = useState(undefined);
   const [burger, set_burger] = useState(false);
- 
-/*  useEffect(() => {
-    document.title = 'Saito Ticker - We love Saito';
-  }, []);
-*/
+
+  /*  useEffect(() => {
+      document.title = 'Saito Ticker - We love Saito';
+    }, []);
+  */
   useEffect(() => {
     get_saito();
   }, [set_saito]);
 
   const get_saito = () => {
     fetch('https://api.coingecko.com/api/v3/coins/saito')
-    .then(response => response.json())
-    .then(res => {
+      .then(response => response.json())
+      .then(res => {
         set_saito(res);
         get_average(res.tickers);
-    })
-    .catch(err => console.log(err)) 
+      })
+      .catch(err => console.log(err))
   }
-  
+
   const get_average = (tickers) => {
     var total_volume = 0;
     var avg_price = 0;
     tickers.forEach(item => {
       //console.log(item);
-      if(item.volume) {
+      if (item.volume) {
         var vol = 0;
         if (item.volume.h24) {
-            vol = item.volume.h24;
+          vol = item.volume.h24;
         } else {
-            vol = item.volume;
+          vol = item.volume;
         }
         if (vol > 500) {
           total_volume = total_volume + vol;
           avg_price = (item.converted_last.usd * vol) + avg_price;
-         }
-      } 
+        }
+      }
     });
 
     const average_result = avg_price / total_volume;
     set_average_price(average_result);
-    document.title = average_result.toFixed(4)+' - Saito Ticker - We love Saito';
+    document.title = average_result.toFixed(4) + ' - Saito Ticker - We love Saito';
   }
 
   const open_burger = () => {
     var nav = document.getElementById("nav_id");
-    if(burger) {
+    if (burger) {
       nav.className = "";
       set_burger(false);
     } else {
@@ -87,7 +87,7 @@ function App() {
     const day = now.getDate().toString().padStart(2, '0'); // Day of the month from 01 to 31
     const hours = now.getHours().toString(); // Hours in 24-hour format without leading zero
     const minutes = now.getMinutes().toString(); // Minutes without leading zero
-  
+
     // Format: YYYY-MM-DD H:M
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   }
@@ -105,7 +105,7 @@ function App() {
 
       <header>
         <div className="center_header">
-          <h1>SaitoTicker 🚀 <span>{average_price && average_price.toFixed(4)+'$'}</span></h1>
+          <h1>SaitoTicker 🚀 <span>{average_price && average_price.toFixed(4) + '$'}</span></h1>
           <h4>[ {daterun} ]</h4>
           <nav id="nav_id">
             <ul>
@@ -118,7 +118,7 @@ function App() {
             </ul>
           </nav>
 
-          <img src={burger_icon} className="burger_menu_icon" onClick={(() => open_burger())}/>
+          <img src={burger_icon} className="burger_menu_icon" onClick={(() => open_burger())} />
         </div>
       </header>
 
@@ -127,13 +127,13 @@ function App() {
       <div className="container_graph2">
         <div className="button_graph">
           <div className="contain_chart" id="graphique">
-            <AdvancedChart widgetProps={{"theme": "dark", "symbol": "SAITOUSDT", autosize: true }} />
+            <AdvancedChart widgetProps={{ "theme": "dark", "symbol": "SAITOUSDT", autosize: true }} />
           </div>
         </div>
       </div>
 
- 
-        
+
+
     </div>
   );
 }

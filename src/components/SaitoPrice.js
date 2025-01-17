@@ -1,6 +1,6 @@
-import "../App.css";
-import React, { useEffect, useState } from "react";
 import { getPairsMatchingBaseTokenAddress } from "dexscreener-api";
+import React, { useEffect, useState } from "react";
+import "../App.css";
 import bsc_icon from "../assets/bsc.png";
 import eth_icon from "../assets/eth.png";
 import link_icon from "../assets/link.png";
@@ -45,10 +45,10 @@ function SaitoPrice() {
     tokens_all &&
       tokens_all.map((item) => {
         var vol = 0;
-        if (item.volume.h24) {
+        if (item?.volume?.h24) {
           vol = item.volume.h24;
         } else {
-          vol = item.volume;
+          vol = item?.volume || 0;
         }
         if (vol > 500) {
           console.info("item: " + JSON.stringify(item));
@@ -56,7 +56,7 @@ function SaitoPrice() {
         }
       });
     temp.sort((a, b) => {
-      return b.priceUsd - a.priceUsd;
+      return (b?.priceUsd || 0) - (a?.priceUsd || 0);
     });
 
     set_initial_pairs(temp);
@@ -86,37 +86,37 @@ function SaitoPrice() {
 
     if (param === "Price USD") {
       filter_array.sort((a, b) => {
-        return b.priceUsd - a.priceUsd;
+        return (b?.priceUsd || 0) - (a?.priceUsd || 0);
       });
       set_pairs(filter_array);
       set_selected_li(param);
     } else if (param === "Liquidity USD") {
       filter_array.sort((a, b) => {
-        return b.liquidity.usd - a.liquidity.usd;
+        return (b?.liquidity?.usd || 0) - (a?.liquidity?.usd || 0);
       });
       set_pairs(filter_array);
       set_selected_li(param);
     } else if (param === "5m") {
       filter_array.sort((a, b) => {
-        return b.priceChange.m5 - a.priceChange.m5;
+        return (b?.priceChange?.m5 || 0) - (a?.priceChange?.m5 || 0);
       });
       set_pairs(filter_array);
       set_selected_li(param);
     } else if (param === "1h") {
       filter_array.sort((a, b) => {
-        return b.priceChange.h1 - a.priceChange.h1;
+        return (b?.priceChange?.h1 || 0) - (a?.priceChange?.h1 || 0);
       });
       set_pairs(filter_array);
       set_selected_li(param);
     } else if (param === "24h") {
       filter_array.sort((a, b) => {
-        return b.priceChange.h24 - a.priceChange.h24;
+        return (b?.priceChange?.h24 || 0) - (a?.priceChange?.h24 || 0);
       });
       set_pairs(filter_array);
       set_selected_li(param);
     } else if (param === "Vol USD") {
       filter_array.sort((a, b) => {
-        return b.volume.h24 - a.volume.h24;
+        return (b?.volume?.h24 || 0) - (a?.volume?.h24 || 0);
       });
       set_pairs(filter_array);
       set_selected_li(param);
@@ -174,63 +174,63 @@ function SaitoPrice() {
                   <div className="container_full_line" key={index}>
                     <div className="full_line">
                       <li>
-                        {item.chainId === "bsc" ? (
+                        {item?.chainId === "bsc" ? (
                           <img src={bsc_icon} className="icon_chain" alt="#" />
                         ) : (
                           <img src={eth_icon} className="icon_chain" alt="#" />
                         )}
-                        &nbsp; {item.quoteToken.symbol}
+                        &nbsp; {item?.quoteToken?.symbol || ''}
                       </li>
                       <li>
-                        {item.pairAddress.substring(0, 6)}...{" "}
-                        <a href={item.url} target="_blank">
+                        {(item?.pairAddress || '').substring(0, 6)}...{" "}
+                        <a href={item?.url || '#'} target="_blank">
                           <img src={link_icon} className="icon_link" alt="#" />
                         </a>
                       </li>
                       <li className="numero">
-                        {item.priceUsd.toLocaleString()}
+                        {(item?.priceUsd || 0).toLocaleString()}
                       </li>
                       <li className="numero">
-                        {item.priceChange.m5 < 0 ? (
+                        {(item?.priceChange?.m5 || 0) < 0 ? (
                           <span className="negativ">
-                            {item.priceChange.m5 + "%"}
+                            {(item?.priceChange?.m5 || 0) + "%"}
                           </span>
                         ) : (
                           <span className="positif">
-                            {item.priceChange.m5 + "%"}
+                            {(item?.priceChange?.m5 || 0) + "%"}
                           </span>
                         )}
                       </li>
                       <li className="numero">
-                        {item.priceChange.h1 < 0 ? (
+                        {(item?.priceChange?.h1 || 0) < 0 ? (
                           <span className="negativ">
-                            {item.priceChange.h1 + "%"}
+                            {(item?.priceChange?.h1 || 0) + "%"}
                           </span>
                         ) : (
                           <span className="positif">
-                            {item.priceChange.h1 + "%"}
+                            {(item?.priceChange?.h1 || 0) + "%"}
                           </span>
                         )}
                       </li>
                       <li className="numero">
-                        {item.priceChange.h24 < 0 ? (
+                        {(item?.priceChange?.h24 || 0) < 0 ? (
                           <span className="negativ">
-                            {item.priceChange.h24 + "%"}
+                            {(item?.priceChange?.h24 || 0) + "%"}
                           </span>
                         ) : (
                           <span className="positif">
-                            {item.priceChange.h24 + "%"}
+                            {(item?.priceChange?.h24 || 0) + "%"}
                           </span>
                         )}
                       </li>
                       <li className="numero">
-                        {item.volume.h24.toLocaleString(undefined, {
+                        {((item?.volume?.h24 || 0)).toLocaleString(undefined, {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                         })}
                       </li>
                       <li className="numero">
-                        {item.liquidity.usd.toLocaleString(undefined, {
+                        {((item?.liquidity?.usd || 0)).toLocaleString(undefined, {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                         })}
