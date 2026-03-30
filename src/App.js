@@ -51,7 +51,7 @@ function App() {
         } else {
           vol = item.volume;
         }
-        if (vol > 500) {
+        if (vol >= 0) {
           total_volume = total_volume + vol;
           avg_price = (item.converted_last.usd * vol) + avg_price;
         }

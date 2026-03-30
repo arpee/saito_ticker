@@ -45,12 +45,18 @@ function SaitoPrice() {
     tokens_all &&
       tokens_all.map((item) => {
         var vol = 0;
+        var liquidity = 0;
         if (item?.volume?.h24) {
           vol = item.volume.h24;
         } else {
           vol = item?.volume || 0;
         }
-        if (vol > 500) {
+        if (item?.liquidity?.usd) {
+          liquidity = item.liquidity.usd;
+        } else {
+          liquidity = item?.liquidity || 0;
+        }
+        if (vol >= 1 && liquidity >= 500) {
           console.info("item: " + JSON.stringify(item));
           temp.push(item);
         }
