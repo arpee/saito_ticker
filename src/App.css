@@ -295,6 +295,164 @@ header nav ul li a{
   text-align: center;
 }
 
+.ticker_section{
+  margin-top: 32px;
+}
+
+.ticker_toolbar{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.ticker_toolbar_label{
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ticker_filter_group{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ticker_filter{
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  transition: 180ms ease;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ticker_filter:hover{
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.ticker_filter.active{
+  border-color: white;
+  background: white;
+  color: black;
+}
+
+.ticker_list{
+  display: grid;
+  gap: 10px;
+}
+
+.ticker_status{
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 14px;
+}
+
+.ticker_card{
+  display: grid;
+  grid-template-columns: minmax(170px, 1.3fr) minmax(120px, 1fr) repeat(3, minmax(72px, 0.72fr)) minmax(110px, 1fr) minmax(120px, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 72px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+}
+
+.ticker_pair{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ticker_chain{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ticker_chain .icon_chain{
+  flex: 0 0 auto;
+  position: static;
+  top: auto;
+}
+
+.ticker_quote{
+  padding: 3px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.ticker_pair_link{
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  margin-top: 0;
+  color: rgba(255, 255, 255, 0.62);
+  text-decoration: none;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ticker_pair_link:hover{
+  color: white;
+}
+
+.ticker_metric{
+  min-width: 0;
+}
+
+.ticker_metric_label{
+  display: block;
+  margin-bottom: 5px;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.ticker_metric strong,
+.ticker_metric_value{
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.ticker_metric .positif{
+  color: #23c55e;
+}
+
+.ticker_metric .negativ{
+  color: #f05252;
+}
+
 
 .container_average{
   margin-bottom: 30px;
@@ -831,6 +989,27 @@ footer p{
     display: block;
   }
 
+  .ticker_toolbar{
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ticker_card{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ticker_pair{
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .ticker_pair_link{
+    margin-top: 0;
+  }
+
   .box{
     width: 100%;
   }
@@ -865,6 +1044,22 @@ footer p{
     margin-bottom: 12px;
   }
 
+  .ticker_card{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .ticker_pair{
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ticker_pair_link{
+    width: 100%;
+  }
+
   .filter_container ul li{
     margin-left: 10px;
   }
@@ -883,6 +1078,89 @@ footer p{
 @media screen and (max-width: 620px) {
   .container_average{
     display: flex;
+  }
+
+  .ticker_filter_group{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .ticker_filter{
+    width: 100%;
+    min-height: 34px;
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .ticker_card{
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: center;
+    gap: 7px 9px;
+    min-height: 0;
+    padding: 10px 12px;
+  }
+
+  .ticker_pair{
+    grid-column: 1 / 4;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .ticker_chain{
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .ticker_quote{
+    padding: 2px 7px;
+    font-size: 12px;
+  }
+
+  .ticker_pair_link{
+    width: auto;
+    margin-top: 0;
+    font-size: 11px;
+  }
+
+  .ticker_metric{
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .ticker_price{
+    grid-column: 4 / -1;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .ticker_change,
+  .ticker_volume,
+  .ticker_liquidity{
+    grid-row: 2;
+  }
+
+  .ticker_metric_label{
+    display: none;
+  }
+
+  .ticker_metric strong,
+  .ticker_metric_value{
+    display: block;
+    font-size: 13px;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .ticker_volume strong,
+  .ticker_liquidity strong{
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 10px;
   }
 
   .small_title{
