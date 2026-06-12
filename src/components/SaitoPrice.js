@@ -210,15 +210,15 @@ function SaitoPrice() {
                   <span className="ticker_metric_label">Price USD</span>
                   <strong>${format_price(item?.priceUsd)}</strong>
                 </div>
-                <div className="ticker_metric ticker_change">
+                <div className="ticker_metric ticker_change ticker_change_5m">
                   <span className="ticker_metric_label">5m</span>
                   {render_change(item?.priceChange?.m5)}
                 </div>
-                <div className="ticker_metric ticker_change">
+                <div className="ticker_metric ticker_change ticker_change_1h">
                   <span className="ticker_metric_label">1h</span>
                   {render_change(item?.priceChange?.h1)}
                 </div>
-                <div className="ticker_metric ticker_change">
+                <div className="ticker_metric ticker_change ticker_change_24h">
                   <span className="ticker_metric_label">24h</span>
                   {render_change(item?.priceChange?.h24)}
                 </div>
