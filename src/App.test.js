@@ -26,8 +26,8 @@ beforeEach(() => {
 test('renders the ticker dashboard', async () => {
   render(<App />);
 
-  expect(screen.getByText(/SaitoTicker/i)).toBeInTheDocument();
-  expect(await screen.findByText(/0.0100\$/i)).toBeInTheDocument();
+  expect(screen.getByText(/SAITO Ticker/i)).toBeInTheDocument();
+  expect(await screen.findByText(/SAITO Ticker - 0.010000/i)).toBeInTheDocument();
   expect(screen.getByRole('button', { name: /Price USD/i })).toBeInTheDocument();
   expect(screen.getByTestId('advanced-chart')).toBeInTheDocument();
 });

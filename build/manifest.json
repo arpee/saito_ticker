@@ -1,25 +1,36 @@
 {
-  "short_name": "Saito Ticker - We love Saito",
-  "name": "Simple ticker for Saito made by French community",
+  "id": "/ticker/",
+  "short_name": "SAITO Ticker",
+  "name": "SAITO Ticker",
+  "description": "Track SAITO market pairs, prices, liquidity, and volume.",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "SaitoAppLogo.png",
+      "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "logo192.png",
+      "src": "SaitoAppLogo.png",
+      "sizes": "256x256",
       "type": "image/png",
-      "sizes": "192x192"
+      "purpose": "maskable"
     },
     {
-      "src": "logo512.png",
+      "src": "SaitoAppLogo512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "SaitoAppLogo512.png",
+      "sizes": "512x512",
       "type": "image/png",
-      "sizes": "512x512"
+      "purpose": "maskable"
     }
   ],
   "start_url": ".",
+  "scope": ".",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#000000"
 }
