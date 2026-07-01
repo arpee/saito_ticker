@@ -1,5 +1,5 @@
 {
-  "id": "/ticker/",
+  "id": "/",
   "short_name": "SAITO Ticker",
   "name": "SAITO Ticker",
   "description": "Track SAITO market pairs, prices, liquidity, and volume.",
@@ -27,8 +27,8 @@
       "purpose": "maskable"
     }
   ],
-  "start_url": "/ticker/",
-  "scope": "/ticker/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "theme_color": "#000000",
