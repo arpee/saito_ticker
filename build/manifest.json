@@ -27,8 +27,8 @@
       "purpose": "maskable"
     }
   ],
-  "start_url": ".",
-  "scope": ".",
+  "start_url": "/ticker/",
+  "scope": "/ticker/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "theme_color": "#000000",
