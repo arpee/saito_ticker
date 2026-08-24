@@ -56,7 +56,7 @@ function SaitoPrice() {
         } else {
           liquidity = item?.liquidity || 0;
         }
-        if (vol >= 1 && liquidity >= 500) {
+        if (vol >= 1 && liquidity >= 1000) {
           temp.push(item);
         }
       });
